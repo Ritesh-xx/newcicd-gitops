@@ -1,0 +1,27 @@
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: newcicd
+  namespace: dev
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: newcicd
+
+  template:
+    metadata:
+      labels:
+        app: newcicd
+
+    spec:
+      containers:
+        - name: newcicd
+          image: zumzumtumtum/newcicd:6d3ca207ba813dcaa7d9fe5cafb681891a99ffa0
+          ports:
+            - containerPort: 5000
+
