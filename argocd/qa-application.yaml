@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: newcicd-qa
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/Ritesh-xx/newcicd-gitops.git
+    targetRevision: main
+    path: qa
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: qa
+
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
